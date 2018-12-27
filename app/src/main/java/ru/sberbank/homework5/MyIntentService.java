@@ -22,7 +22,6 @@ public class MyIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-
         Intent broadcastIntent = new Intent("ru.sberbank.SEND_MESSAGES_FILTER");
         broadcastIntent.putExtra("Data", randomString(10));
         sendBroadcast(broadcastIntent, "ru.sberbank.SEND_MESSAGES_PERMISSION");

@@ -6,6 +6,11 @@ import android.content.Intent;
 
 public class MyBroadcastReceiver extends BroadcastReceiver {
 
+    Callback callback;
+
+    public MyBroadcastReceiver(Callback callback) {
+        this.callback = callback;
+    }
 
     public MyBroadcastReceiver() {
     }
@@ -13,6 +18,8 @@ public class MyBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String getData = intent.getStringExtra("Data");
+        callback.setData(getData);
+
 
     }
 }
