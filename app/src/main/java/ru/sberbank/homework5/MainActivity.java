@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
 
         initFragments();
         if (mFirstCreate) {
-            initTransactions();
             startSerice();
             mFirstCreate = false;
 
@@ -49,21 +48,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initFragments() {
-        if (mFirstCreate) {
-            firstFragment = FirstFragment.newInstance();
-            secondFragment = SecondFragment.newInstance();
-            secondFragment.setOnButtonPressed(new OnButtonPressedImpl());
-        }
-        if (firstFragment == null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            firstFragment = (FirstFragment) fragmentManager.findFragmentByTag("FIRST");
-        }
 
-        if (secondFragment == null) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            secondFragment = (SecondFragment) fragmentManager.findFragmentByTag("SECOND");
-            secondFragment.setOnButtonPressed(new OnButtonPressedImpl());
-        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        firstFragment = (FirstFragment) fragmentManager.findFragmentById(R.id.first_fragment);
+        secondFragment = (SecondFragment) fragmentManager.findFragmentById(R.id.second_fragment);
+        secondFragment.setOnButtonPressed(new OnButtonPressedImpl());
     }
 
 
@@ -73,14 +62,6 @@ public class MainActivity extends AppCompatActivity {
         startSerice();
     }
 
-    private void initTransactions() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.first_layout, firstFragment, "FIRST");
-        fragmentTransaction.add(R.id.second_layout, secondFragment, "SECOND");
-        fragmentTransaction.commit();
-
-    }
 
 
     private class OnButtonPressedImpl implements OnButtonPressed {
@@ -98,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
             bundle.putString("Data", firstFragment.getEditText());
             thirdFragment.setArguments(bundle);
 
-            fragmentTransaction.replace(R.id.second_layout, thirdFragment, "THIRDTAG");
+            fragmentTransaction.hide(secondFragment);
+            fragmentTransaction.add(R.id.second_layout, thirdFragment, "THIRDTAG");
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }
