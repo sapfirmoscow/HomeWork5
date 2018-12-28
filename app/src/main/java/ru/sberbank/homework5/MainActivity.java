@@ -78,9 +78,7 @@ public class MainActivity extends AppCompatActivity {
             Bundle bundle = new Bundle();
             bundle.putString("Data", firstFragment.getEditText());
             thirdFragment.setArguments(bundle);
-
-            fragmentTransaction.hide(secondFragment);
-            fragmentTransaction.add(R.id.second_layout, thirdFragment, "THIRDTAG");
+            fragmentTransaction.replace(R.id.second_fragment, thirdFragment, "THIRDTAG");
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         }

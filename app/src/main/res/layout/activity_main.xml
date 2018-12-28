@@ -6,33 +6,18 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-
-    <FrameLayout
-        android:id="@+id/first_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
         <fragment
             android:id="@+id/first_fragment"
             class="ru.sberbank.homework5.fragments.FirstFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
-    </FrameLayout>
-
-
-    <FrameLayout
-        android:id="@+id/second_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <fragment
             android:id="@+id/second_fragment"
             class="ru.sberbank.homework5.fragments.SecondFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </FrameLayout>
+            android:layout_height="wrap_content" />
 
 
 </LinearLayout>
